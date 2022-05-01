@@ -15,7 +15,7 @@ final bool isDart2JS = !isDartDevC;
 final bool omitImplicitChecks = (() {
   try {
     Object notAString = 5;
-    String implicitString = notAString;
+    String implicitString = notAString as String;
     return implicitString != null;
   } on TypeError catch (_) {
     return false;
@@ -31,7 +31,7 @@ class _CastMe<T> {}
 final bool ignoreCastFailures = (() {
   try {
     final ofDynamic = new _CastMe();
-    _CastMe<String> ofString = ofDynamic;
+    _CastMe<String> ofString = ofDynamic as _CastMe<String>;
     return ofString != null;
   } on TypeError catch (_) {
     return false;
@@ -130,7 +130,7 @@ void main() {
       test('succeeds implicitly', () {
         final Object upcastList = listOfValues;
         expect(() {
-          List<HasValueField> dogs = upcastList;
+          List<HasValueField> dogs = upcastList as List<HasValueField>;
           expect(dogs, hasLength(2));
         }, returnsNormally);
       });
@@ -138,7 +138,7 @@ void main() {
       test('fails implicitly in DartDevC or Dart2JS without --omit-implicit-checks', () {
         final Object upcastList = listOfValues;
         expect(() {
-          List<HasValueField> dogs = upcastList;
+          List<HasValueField> dogs = upcastList as List<HasValueField>;
           expect(dogs, hasLength(2));
         }, _throwsTypeOrCastError);
       });
@@ -186,7 +186,7 @@ void main() {
   group('treating a JSType as if it has a type argument <T>', () {
     test('succeeds implicitly', () {
       final Object upcastValue = valueOfFoo;
-      final JSContainer<String> container = upcastValue;
+      final JSContainer<String> container = upcastValue as JSContainer<String>;
       expect(container.value, 'Foo');
     });
 
@@ -211,7 +211,7 @@ void main() {
   group('treating an @anonymous JSType as if it has a type argument <T>', () {
     test('succeeds implicitly', () {
       final Object upcastValue = valueOfHelloWorld;
-      final AnonymousJSContainer<String> container = upcastValue;
+      final AnonymousJSContainer<String> container = upcastValue as AnonymousJSContainer<String>;
       expect(container.value, 'Hello World');
     });
 

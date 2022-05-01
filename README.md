@@ -33,19 +33,19 @@ This repository was built and tested using the `2.0.0-dev.63.0` SDK.
 To run all of the tests in DartDevCompiler (DDC):
 
 ```bash
-$ pub run build_runner test
+$ dart run build_runner test
 ```
 
 To run all of the tests in Dart2JS:
 
 ```bash
-$ pub run build_runner test -r
+$ dart run build_runner test -r
 ```
 
 To run all of the tests in Dart2JS with spec-compliance mode:
 
 ```bash
-$ pub run build_runner test -r -c spec
+$ dart run build_runner test -r -c spec
 ```
 
 (This disables the `--omit-implicit-checks` flag)
